@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flappy Bird</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+    
+    #gameover {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: rgb(0, 0, 0);
+      text-align: center;
+      padding-top: 200px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game" width="1920" height="1080"></canvas>
+  <button id="fullscreen-btn">Full Screen</button>
+  <div id="gameover">
+    <h2>Game Over!</h2>
+    <p>Score: <span id="score"></span></p>
+    <button onclick="startGame()">Play Again</button>
+    <button onclick="restartGame()">Restart</button>
+  </div>
+  <script src="game.js"></script>
+  <script src="a.css"></script>
+</body>
+</html>
