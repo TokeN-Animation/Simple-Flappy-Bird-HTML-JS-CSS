@@ -4,7 +4,10 @@
   <title>Flappy Bird</title>
   <style>
     canvas {
-      border: 1px solid black;
+      background-image: url("./img/bg.jpg");
+      background-size: cover;
+      border: 1.2px solid black;
+      box-shadow: 2px;
     }
     
     #gameover {
@@ -19,10 +22,22 @@
       text-align: center;
       padding-top: 200px;
     }
+    #scoreboard {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <canvas id="game" width="1920" height="1080"></canvas>
+  <div id="scoreboard">Score: <span id="score">0</span></div>
+  <button onclick="startGame()">Start Game</button>
+  <button onclick="pauseGame()">Pause Game</button>
+  <button onclick="resumeGame()">Resume Game</button>
+  <button onclick="restartGame()">Restart Game</button>
   <button id="fullscreen-btn">Full Screen</button>
   <div id="gameover">
     <h2>Game Over!</h2>
@@ -30,7 +45,6 @@
     <button onclick="startGame()">Play Again</button>
     <button onclick="restartGame()">Restart</button>
   </div>
-  <script src="script.js"></script> <!-- Missing slash before closing script tag -->
-  <script src="style.css"></script>
+  <script src="script.js"></script>
 </body>
 </html>
