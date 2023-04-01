@@ -20,3 +20,6 @@ To use 'index.html', you should first download the code files and images and sav
 Then, open 'index.html' in a web browser to play the game. You can use the arrow keys or space bar to control the bird.
 If you want to make changes to the game, you can modify the code in 'style.css' and 'script.js' using a code editor such as Visual Studio Code or Sublime Text. After making changes, save the files and refresh the web page to see the updated game.
 To share your game on GitHub, you can create a new repository and upload the code files and images. You can then add a README file with instructions on how to use the game and any additional information about the project.
+
+Install 'Simple Flappy Bird':
+git clone https://github.com/TokeN-Animation/Simple-Flappy-Bird-HTML-JS-CSS.git
