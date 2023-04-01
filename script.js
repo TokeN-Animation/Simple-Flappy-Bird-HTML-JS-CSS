@@ -10,45 +10,68 @@ var gravity = 0.05;
 var jumpForce = -1.5;
 var isGameOver = false;
 
+var D = 1700;
+
 
 var birdImg = new Image();
-birdImg.src = ""; //*Bird Image*//
+birdImg.src = "./img/bird.png"; // Bird Image
 
 
 var obstacleTopImg = new Image();
-obstacleTopImg.src = ""; //*Wall Image*//
+obstacleTopImg.src = "./img/wall_top.png"; // Wall Image
 var obstacleBottomImg = new Image();
-obstacleBottomImg.src = ""; //*Wall Image*//
+obstacleBottomImg.src = "./img/wall.png"; // Wall Image
 
 
 function Bird(x, y) {
   this.x = x;
   this.y = y;
   this.vy = 0;
+  this.scaleFactor = 25 / birdImg.height;
+  this.width = 34;
+  this.height = 24;
 
 
   this.draw = function() {
-    ctx.drawImage(birdImg, this.x, this.y);
-  }
-
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.scale(this.scaleFactor, this.scaleFactor);
+    ctx.drawImage(birdImg, 0, 0);
+    ctx.restore();
+  };
 
   this.update = function() {
     this.y += this.vy;
     this.vy += gravity;
-  }
-
+  };
 
   this.jump = function() {
     this.vy = jumpForce;
-  }
-
+  };
 
   this.collidesWith = function(obstacle) {
+    this.hitbox = {
+      x: this.x + 5,
+      y: this.y + 5,
+      width: this.width - 10,
+      height: this.height - 10
+    };
+    
+    if (
+      this.hitbox.x + this.hitbox.width > obstacle.x &&
+      this.hitbox.x < obstacle.x + obstacle.width &&
+      (this.hitbox.y < obstacle.topHeight || this.hitbox.y + this.hitbox.height > obstacle.bottomY)
+    ) {
+      return true;
+    }
+
     if (this.x + 34 > obstacle.x && this.x < obstacle.x + obstacle.width && (this.y < obstacle.topHeight || this.y + 24 > obstacle.bottomY)) {
       return true;
     }
     return false;
-  }
+  };
+
+  
 }
 
 
@@ -74,7 +97,7 @@ function Obstacle(x) {
 function createGameObjects() {
   bird = new Bird(50, 150);
   obstacles = [];
-  obstacles.push(new Obstacle(500));
+  obstacles.push(new Obstacle(canvas.width + 26));
 }
 
 
@@ -106,8 +129,8 @@ function update() {
   }
 
 
-  if (obstacles[obstacles.length - 1].x < 300) {
-    obstacles.push(new Obstacle(500));
+  if (obstacles[obstacles.length - 1].x < D) {
+    obstacles.push(new Obstacle(canvas.width + 26));
   }
 
 
